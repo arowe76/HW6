@@ -1,7 +1,7 @@
 
 /******************************************************************
  *
- *   YOUR NAME / SECTION NUMBER
+ *   Andrew Rowe / COMP 272-002
  *
  *   Note, additional comments provided throughout this source code
  *   is for educational purposes
@@ -150,9 +150,14 @@ class PriorityQueue<E, P> {
      */
 
     public Node add(E e, P priority) {
+        // Create a new node with the element and its priority...
+        Node newNode = new Node(e, priority, tree.size());
 
-        // YOUR CODE GOES HERE
-        return null;
+        // Add the node at the end of the tree (minHeap) and pull it up to maintain order...
+        tree.add(newNode);
+        pullUp(tree.size() - 1);
+
+        return newNode;
     }
 
 
@@ -167,8 +172,12 @@ class PriorityQueue<E, P> {
      */
 
     public boolean contains(E e) {
-
-        // ADD YOUR CODE HERE
+        // Loop through the tree to check if any node has the element 'e'...
+        for (Node node : tree) {
+            if (node.value.equals(e) && node.isValid()) {
+                return true;
+            }
+        }
         return false;
     }
 
